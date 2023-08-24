@@ -12,7 +12,7 @@ RUN npm install
 # Menyalin seluruh konten aplikasi ke dalam container
 COPY . .
 
-EXPOSE 3000
+EXPOSE 80
 #Jalankan aplikasi Node.js
 CMD ["node", "app.js"]
 
