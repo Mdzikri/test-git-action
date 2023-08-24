@@ -20,7 +20,9 @@ jobs:
         service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
         project_id: ${{ env.PROJECT_ID }}
         export_default_credentials: true
-
+    
+    - run: npm run build --if-present
+    - run: npm test
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
 
