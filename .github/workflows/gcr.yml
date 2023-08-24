@@ -40,10 +40,13 @@ jobs:
 
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
-    
-    - name: CD
-      run: echo 'CD is Disabled (Check workflow comment for the code).'
-    
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $GCP_VM_IP >> ~/.ssh/known_hosts
+
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
@@ -54,5 +57,3 @@ jobs:
         script: |
           docker pull gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
           docker run --name test -d -p 80:80 gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-
-#tes
