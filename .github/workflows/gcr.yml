@@ -55,3 +55,4 @@ jobs:
           docker pull gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
           docker run --name test -d -p 80:80 gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
+#tes
